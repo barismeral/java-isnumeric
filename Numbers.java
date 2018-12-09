@@ -14,9 +14,10 @@ static char[] numbers={'1','2','3','4','5',
 '6','7','8','9','0'};
 
 /**
+* @author Baris Meral
 * @param input as Object
 * @return boolean true or false
-* @version 2.0.0
+* @version 2.1.0
 * <p> Checks whether the entered value is numeric. </p> <br>
 * <p> Returns true if it contains a numeric value </p> <br>
 * <p> double and float number control feature added</p>
@@ -25,7 +26,9 @@ static char[] numbers={'1','2','3','4','5',
 public static boolean isNumeric(Object input){
     
   String temp = String.valueOf(input);
-  if(temp=="")return false;
+  if(temp=="" || temp.charAt(temp.length()-1)=='.')
+      return false;
+    
   char[] array = temp.toCharArray();
   
   int numberCount=0,doubleControl=0,dot=0;

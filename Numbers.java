@@ -1,42 +1,59 @@
 package com.baris.example.isnumeric;
 
+
+/**
+* @author Barış Meral
+* @since 2018.10.26;
+* @version 2.0.0
+*/
+
+
 public class Numbers {
 
-static String[] numbers={"0","1","2","3","4","5",
-"6","7","8","9"};
+static char[] numbers={'1','2','3','4','5',
+'6','7','8','9','0'};
 
-
-public static boolean isNumeric(Object o){
+/**
+* @param input as Object
+* @return boolean true or false
+* @version 2.0.0
+* <p> Checks whether the entered value is numeric. </p> <br>
+* <p> Returns true if it contains a numeric value </p> <br>
+* <p> double and float number control feature added</p>
+*
+*/
+public static boolean isNumeric(Object input){
     
-  String temp = String.valueOf(o);
-  String[] array = new String[temp.length()];
+  String temp = String.valueOf(input);
+  if(temp=="")return false;
+  char[] array = temp.toCharArray();
   
-  for(int i=0;i<temp.length();i++){
-    
-    array[i] = String.valueOf(temp.charAt(i));
-    
-  }
+  int numberCount=0,doubleControl=0,dot=0;
   
-  
-  int count=0;
-  for(String s : array){
+  for(int i = 0;i<array.length;i++,dot++){
+    if(array[0]=='.'||array[0]==' ')
+    return false;
     
-    if(s.equals(numbers[0])||s.equals(numbers[1])||
-s.equals(numbers[2])||s.equals(numbers[3])||s.equals(numbers[3])||s.equals(numbers[4])||s.equals(numbers[5])||s.equals(numbers[6])||s.equals(numbers[7])||s.equals(numbers[8])||
-s.equals(numbers[9])){
-      count++;
+    if(array[dot]=='.'){
+    doubleControl++;
+    numberCount++;
     }
-       
-  }
-  
     
-  if(count==temp.length())
+    for(int j = 0;j<numbers.length;j++){
+      
+      if(array[i]==numbers[j])
+      numberCount++;
+     
+    }
+  }
+
+    
+  if(numberCount==temp.length() && 
+  (doubleControl==1 || doubleControl==0))
   return true;
+  
   else
   return false;
 }
-
-
-
 
 }
